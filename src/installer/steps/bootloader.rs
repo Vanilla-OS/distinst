@@ -67,6 +67,8 @@ pub fn bootloader<F: FnMut(i32)>(
                             &[
                                 // Recreate device map
                                 "--recheck".into(),
+                                // Force (mostly useful in VM)
+                                "--force".into(),
                                 // Install for BIOS
                                 "--target=i386-pc".into(),
                                 // Install to the bootloader_dev device
@@ -111,6 +113,8 @@ pub fn bootloader<F: FnMut(i32)>(
                                 "grub-install",
                                 &[
                                     "--target=x86_64-efi",
+                                    // Force (mostly useful in VM)
+                                    "--force".into(),
                                     "--efi-directory=/boot/efi",
                                     &format!("--boot-directory=/boot/efi/EFI/{}", name),
                                     &format!("--bootloader={}", name),

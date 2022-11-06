@@ -93,53 +93,10 @@ fn parse_dependency_line<F: FnMut(&str)>(line: &str, mut func: F) {
 }
 
 pub fn get_bootloader_packages(os_release: &OsRelease) -> &'static [&'static str] {
+    println!("os_release: {:?}", os_release);
     match Bootloader::detect() {
         Bootloader::Bios => &["grub-common", "grub2-common", "grub-pc"],
-        Bootloader::Efi if os_release.name == "Pop!_OS" => &["kernelstub"],
-        Bootloader::Efi if os_release.name == "Ubuntu" && os_release.version_id == "18.04" => &[
-            "grub-efi",
-            "grub-efi-amd64",
-            "grub-efi-amd64-signed",
-            "shim-signed",
-            "mokutil",
-            "fwupdate-signed",
-            "linux-signed-generic-hwe-18.04",
-        ],
-        Bootloader::Efi if os_release.name == "Ubuntu" && os_release.version_id == "20.04" => &[
-            "grub-efi",
-            "grub-efi-amd64",
-            "grub-efi-amd64-signed",
-            "shim-signed",
-            "mokutil",
-            "fwupd-signed",
-            "linux-image-generic-hwe-20.04",
-        ],
-        Bootloader::Efi if os_release.name == "Ubuntu" && os_release.version_id.starts_with("22.04") => &[
-            "efibootmgr",
-            "grub-common",
-            "grub-efi-amd64-bin",
-            "grub-efi-amd64-signed",
-            "shim-signed",
-            "mokutil",
-            "fwupd-signed",
-            "linux-image-generic",
-        ],
-        Bootloader::Efi if os_release.name == "elementary OS" => &[
-            "grub-efi-amd64",
-            "grub-efi-amd64-signed",
-            "shim-signed",
-            "mokutil",
-        ],
-        Bootloader::Efi => &[
-            "grub-efi",
-            "grub-efi-amd64",
-            "grub-efi-amd64-bin",
-            "grub-efi-amd64-signed",
-            "shim-signed",
-            "mokutil",
-            "fwupd-signed",
-            "linux-image-generic",
-        ],
+        Bootloader::Efi  => &["kernelstub"]
     }
 }
 
