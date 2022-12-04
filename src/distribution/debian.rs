@@ -96,7 +96,7 @@ pub fn get_bootloader_packages(os_release: &OsRelease) -> &'static [&'static str
     println!("os_release: {:?}", os_release);
     match Bootloader::detect() {
         Bootloader::Bios => &["grub-common", "grub2-common", "grub-pc"],
-        Bootloader::Efi  => &["kernelstub"]
+        Bootloader::Efi  => &["grub-common", "grub2-common", "grub-efi-amd64"],
     }
 }
 
