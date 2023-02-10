@@ -194,12 +194,13 @@ pub fn extract<P: AsRef<Path>, Q: AsRef<Path>, F: FnMut(i32)>(
     }
 
     let status = child.wait()?;
-    if status.success() {
-        Ok(())
-    } else {
-        Err(Error::new(
-            ErrorKind::Other,
-            format!("archive extraction failed with status: {}", status),
-        ))
+    match status.code() {
+        Some(0) | Some(2) => Ok(()),
+        _ => {
+            Err(Error::new(
+                ErrorKind::Other,
+                format!("archive extraction failed with status: {}", status),
+            ))
+        }
     }
 }
