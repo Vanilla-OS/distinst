@@ -546,6 +546,7 @@ fn parse_flags(flags: &str) -> Vec<PartitionFlag> {
             "legacy_boot" => Some(PartitionFlag::PED_PARTITION_LEGACY_BOOT),
             "msft_data" => Some(PartitionFlag::PED_PARTITION_MSFT_DATA),
             "irst" => Some(PartitionFlag::PED_PARTITION_IRST),
+            "bios_grub" => Some(PartitionFlag::PED_PARTITION_BIOS_GRUB),
             _ => None,
         })
         .collect::<Vec<_>>()
