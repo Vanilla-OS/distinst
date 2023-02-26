@@ -1,4 +1,10 @@
-distinst (0.3.2-2) kinetic; urgency=medium
+distinst (0.3.2-7) lunar; urgency=medium
+
+  * Vanilla OS Adaptions
+
+ -- Mirko Brombin <send@mirko.pm>  Thu, 27 Oct 2022 21:51:00 -0700
+
+distinst (0.3.2-6) kinetic; urgency=medium
 
   * Vanilla OS Adaptions
 
